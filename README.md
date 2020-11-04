@@ -23,3 +23,7 @@ SIGNING_KEY = Signing Key Used in JWT
 
 /user/:id (get)
 /user/:id (delete)
+
+/bookmark/my (get) Gives all your bookmarks
+/bookmark/:id (post) Adds your bookmark
+/bookmark/:id (delete) Removes your bookmark

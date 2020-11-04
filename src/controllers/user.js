@@ -1,6 +1,8 @@
 const {users} = require('../db/db');
 const md5 = require('md5');
 const {filteredUser} = require('../utility');
+const { request } = require('express');
+const passport = require('passport');
 
 module.exports = app => {
     app.get('/user/:id', async (request, response) => {

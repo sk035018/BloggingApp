@@ -8,6 +8,7 @@ const userContoller = require('./src/controllers/user');
 const blogController = require('./src/controllers/blog');
 const {init} = require('./src/controllers/auth');
 const {filteredUser} = require('./src/utility');
+const bookmarkController = require('./src/controllers/bookmark'); 
 
 const JwtStrategy = require("passport-jwt").Strategy,
         ExtractJwt = require("passport-jwt").ExtractJwt;
@@ -40,6 +41,7 @@ app.use(passport.initialize());
 
 userContoller(app);
 blogController(app);
+bookmarkController.init(app);
 init(app);
 
 app.get('/', (request, response) => {

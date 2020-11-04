@@ -14,6 +14,7 @@ const sequelize = new Sequelize({
 
 const users = require('./models/users')(sequelize);
 const blogs = require('./models/blogs')(sequelize);
+const bookmarks = require('./models/bookmarks')(sequelize);
 
 const Init = async () => {
     try {
@@ -28,4 +29,5 @@ module.exports = {
     Init,
     users,
     blogs,
+    bookmarks,
 }

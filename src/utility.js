@@ -13,5 +13,4 @@ function generateJWT(payload) {
 module.exports = {
     filteredUser,
     generateJWT,
-    SIGNING_KEY,
 }
