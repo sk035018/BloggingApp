@@ -22,15 +22,15 @@ const PORT = process.env.PORT;
 
 Init().then(console.log).catch(console.log);
 
-passport.use(
-    new JwtStrategy(options, async function (payload, done) {
-      const user = await users.findOne({ id: payload.id });
+passport.use( new JwtStrategy(options,
+    async function (payload, done) {
+    const user = await users.findOne({where : { id: payload.id }});
   
-      if (!user) {
+    if (!user) {
         done(null, false);
-      }
+    }
   
-      done(null, filteredUser(user));
+    done(null, filteredUser(user));
     })
   );
 

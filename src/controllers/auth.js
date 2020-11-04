@@ -1,8 +1,6 @@
 const { users } = require("../db/db");
 const md5 = require("md5");
 const { generateJWT, filteredUser } = require("../utility");
-const passport = require("passport");
-let authorizedUser = {};
 
 function init(app) {
         app.post("/auth/login", async function (request, response) {
@@ -10,8 +8,7 @@ function init(app) {
             const user = await users.findOne({ where: { email } });
 
             if (!user || user.password !== md5(password)) {
-                authorizedUser = {};
-            response
+                response
                 .status(401)
                 .send({ message: "Either username or password is incorrect" });
             }
@@ -24,5 +21,4 @@ function init(app) {
 
 module.exports = {
     init,
-    authorizedUser,
 }

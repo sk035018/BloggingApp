@@ -14,7 +14,7 @@ module.exports = app => {
         }
     });
 
-    app.post("/user", async function (request, response) {
+    app.post("/auth/signup", async function (request, response) {
         const { body } = request;
         const { first_name, last_name, email, password } = body;
 
@@ -34,4 +34,21 @@ module.exports = app => {
         await user.destroy();
         response.send("Successfully deleted Id : " + user.id );
       });
+
+    app.delete("/user/:id", passport.authenticate("jwt", { session: false }),
+        async function (request, response) {    
+            const { id } = request.params;
+            const user = await user.findOne({where : {id}});
+            if(user){
+                if(user.id === request.user.id) {
+                    await user.destroy();
+                    response.send("Successfully deleted Id : " + user.id );
+                } else {
+                    response.send("Log In with your Id First than try to delete your account");
+                }
+            } else  {
+                response.send("No Such User Exists...");
+            }
+      });
+
 }
