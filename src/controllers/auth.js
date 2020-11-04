@@ -14,7 +14,6 @@ function init(app) {
             }
 
             const jwt = generateJWT(filteredUser(user));
-            authorizedUser = user;
             response.status(200).send({ token: jwt, user: filteredUser(user) });
         });
 }

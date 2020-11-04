@@ -1,6 +1,5 @@
 const {blogs} = require('../db/db');
 const passport = require('passport');
-const {authorizedUser} = require('./auth');
 
 module.exports = app => {
 
@@ -43,7 +42,7 @@ module.exports = app => {
             const { content, description } = request.body;
             const blog = await blogs.findOne({where:{id}});
             if(blog){
-                if(blog.author === authorizedUser.id) {
+                if(blog.author === request.user.id) {
 
                    blog.content = content ? content : blog.content;
                    blog.description = description ? description : blog.description;

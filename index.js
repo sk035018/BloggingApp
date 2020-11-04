@@ -7,14 +7,14 @@ const {users} = require('./src/db/db');
 const userContoller = require('./src/controllers/user');
 const blogController = require('./src/controllers/blog');
 const {init} = require('./src/controllers/auth');
-const {SIGNING_KEY, filteredUser} = require('./src/utility');
+const {filteredUser} = require('./src/utility');
 
 const JwtStrategy = require("passport-jwt").Strategy,
         ExtractJwt = require("passport-jwt").ExtractJwt;
 
 const options = {
     jwtFromRequest : ExtractJwt.fromAuthHeaderAsBearerToken(),
-    secretOrKey : SIGNING_KEY,
+    secretOrKey : process.env.SIGNING_KEY,
 }
 
 const app = express();

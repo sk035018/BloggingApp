@@ -10,6 +10,7 @@ DB_PORT = Database Port
 USER_NAME = Postgres Username
 PASSWORD = Postgres Password 
 DATABASE = Database Name
+SIGNING_KEY = Signing Key Used in JWT
 
 ## Urls
 /auth/signup (post) {first_name, second_name, email, password}

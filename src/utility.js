@@ -1,5 +1,4 @@
 const jwt = require('jsonwebtoken');
-const SIGNING_KEY = 'uhsfgieukgkwralythgesjtgserystuesfeiurtgeiryersfgsidkgekruguy';
 
 // Removing password from user
 function filteredUser(user) {
@@ -8,7 +7,7 @@ function filteredUser(user) {
 }
 
 function generateJWT(payload) {
-    return jwt.sign(payload, SIGNING_KEY, { expiresIn: "1d" });
+    return jwt.sign(payload, process.env.SIGNING_KEY, { expiresIn: "1d" });
   }
 
 module.exports = {
