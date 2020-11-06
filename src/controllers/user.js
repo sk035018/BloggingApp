@@ -1,7 +1,6 @@
 const {users} = require('../db/db');
 const md5 = require('md5');
 const {filteredUser} = require('../utility');
-const { request } = require('express');
 const passport = require('passport');
 
 module.exports = app => {
@@ -40,7 +39,7 @@ module.exports = app => {
     app.delete("/user/:id", passport.authenticate("jwt", { session: false }),
         async function (request, response) {    
             const { id } = request.params;
-            const user = await user.findOne({where : {id}});
+            const user = await users.findOne({where : {id}});
             if(user){
                 if(user.id === request.user.id) {
                     await user.destroy();

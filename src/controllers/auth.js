@@ -1,6 +1,7 @@
 const { users } = require("../db/db");
 const md5 = require("md5");
 const { generateJWT, filteredUser } = require("../utility");
+const passport = require("passport");
 
 function init(app) {
         app.post("/auth/login", async function (request, response) {
@@ -16,6 +17,12 @@ function init(app) {
             const jwt = generateJWT(filteredUser(user));
             response.status(200).send({ token: jwt, user: filteredUser(user) });
         });
+
+        app.get("/auth/me", passport.authenticate("jwt", { session: false }),
+            async function(request, response) {
+                response.send(request.user);
+            }
+        );
 }
 
 module.exports = {
